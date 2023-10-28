@@ -15,6 +15,6 @@ module.exports = {
         '@typescript-eslint/no-unused-vars': 'off',
         '@typescript-eslint/ban-ts-comment': 'off',
         '@typescript-eslint/explicit-module-boundary-types': 'off',
-        'i18next/no-literal-string': 1,
+        // 'i18next/no-literal-string': 1,
     },
 };

@@ -5,10 +5,12 @@ import ThemeProvider from 'src/app/providers/ThemeProvider/ui/ThemeProvider.tsx'
 import  {I18nextProvider}  from 'react-i18next';
 
 import 'src/shared/config/i18n/i18n'
+import ErrorBoundary from './app/providers/ErrorBoundory/ui/ErrorBoundary';
 ReactDOM.createRoot(document.getElementById('root')!).render(
-    <ThemeProvider>
+    <ErrorBoundary>
 
+        <ThemeProvider>
             <App />
-
-    </ThemeProvider>
+        </ThemeProvider>
+    </ErrorBoundary>
 );

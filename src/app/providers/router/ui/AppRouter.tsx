@@ -1,6 +1,7 @@
 import React, { FC, ReactNode, Suspense } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { routeConfig } from 'src/shared/config/routeConfig/routeConfig';
+import { PageLoader } from 'src/widgets/PageLoader/PageLoader';
 import { SideBar } from 'src/widgets/SideBar';
 
 // сделать компонент, который сначала показывает NavBar, а потом children
@@ -22,7 +23,7 @@ const AppRouter: FC<AppRouterProps> = ({ children }) => {
 
                     <div className="content-page">
                         <SideBar />
-                        <Suspense fallback={<div>Loading...</div>}>
+                        <Suspense  fallback={<PageLoader />}>
                             {element}
                         </Suspense>
                     </div>
