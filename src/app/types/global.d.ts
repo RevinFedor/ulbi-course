@@ -5,3 +5,5 @@ declare module '*.svg' {
     const content: ReactElement<SVGProps<SVGElement>>;
     export default content;
 }
+
+declare const VITE_IS_DEV: boolean;

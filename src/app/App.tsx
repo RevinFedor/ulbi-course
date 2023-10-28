@@ -3,16 +3,23 @@ import { useTheme } from './providers/ThemeProvider';
 import { AppRouter } from './providers/router';
 import { classNames } from 'src/shared/lib/classNames/classNames';
 import { Navbar } from 'src/widgets/Navbar';
+import React, { Suspense } from 'react';
+import { useTranslation } from 'react-i18next';
+
+
 
 function App() {
     const { theme } = useTheme();
 
-    // отобразить линки вне роутинга 
+    // отобразить линки вне роутинга
     return (
         <div className={classNames('app', {}, theme ? [theme] : [])}>
-            <AppRouter>
-                <Navbar />
-            </AppRouter>
+            <Suspense>
+          
+                <AppRouter>
+                    <Navbar />
+                </AppRouter>
+            </Suspense>
         </div>
     );
 }
