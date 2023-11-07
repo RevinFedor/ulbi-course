@@ -1,11 +1,10 @@
-import React, { FC, ReactNode, Suspense } from 'react';
+import { FC, ReactNode, Suspense } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { routeConfig } from 'src/shared/config/routeConfig/routeConfig';
 import { PageLoader } from 'src/widgets/PageLoader/PageLoader';
 import { SideBar } from 'src/widgets/SideBar';
 
 // сделать компонент, который сначала показывает NavBar, а потом children
-
 
 type AppRouterProps = {
     children: ReactNode;
@@ -18,14 +17,11 @@ const AppRouter: FC<AppRouterProps> = ({ children }) => {
             element: (
                 <>
                     {children}
-
                     {/* <HeaderProvider>{element}</HeaderProvider> */}
 
                     <div className="content-page">
                         <SideBar />
-                        <Suspense  fallback={<PageLoader />}>
-                            {element}
-                        </Suspense>
+                        <Suspense fallback={<PageLoader />}>{element}</Suspense>
                     </div>
                 </>
             ),

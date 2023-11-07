@@ -4,6 +4,7 @@ import { ButtonHTMLAttributes } from 'react';
 
 export enum ThemeButton {
     CLEAR = 'clear',
+    CLEAR_INVERTED = 'clearInverted',
     OUTLINE = 'outline',
     BACKGROUND = 'background',
     BACKGROUND_INVERTED = 'backgroundInverted',
@@ -20,6 +21,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     theme?: ThemeButton;
     square?: boolean;
     size?: ButtonSize;
+    disabled?: boolean;
 }
 
 export const Button = (props: ButtonProps) => {
@@ -29,6 +31,7 @@ export const Button = (props: ButtonProps) => {
         theme,
         square,
         size = ButtonSize.M,
+        disabled,
         ...otherProps
     } = props;
 
@@ -39,6 +42,7 @@ export const Button = (props: ButtonProps) => {
         [cls[theme || '']]: true,
         [cls.square]: square,
         [cls[size]]: true,
+        [cls.disabled]: disabled,
     };
 
     return (
@@ -48,6 +52,7 @@ export const Button = (props: ButtonProps) => {
                 cls[theme || ''],
             ])}
             {...otherProps}
+            disabled={disabled}
         >
             {children}
         </button>
