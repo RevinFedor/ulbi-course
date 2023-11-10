@@ -1,8 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import "reset";
 @import "variables/global";
 @import "themes/normal";
 @import "themes/dark";
-@import "themes/orange";
+@import "themes/purple";
 
 
 
@@ -24,6 +28,13 @@ body {
 .content-page {
     display: flex;
 }
+
+
+.page-wrapper {
+    flex-grow: 1;
+    padding: 20px;
+}
+
 
 *::-webkit-scrollbar {
     width: 12px;               /* ширина scrollbar */

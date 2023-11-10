@@ -1,8 +1,8 @@
 import React from 'react';
-import { RoutePath } from 'src/shared/config/routeConfig/routeConfig';
-import AboutIcon from 'src/widgets/assets/icons/about-20-20.svg?react';
-import MainIcon from 'src/widgets/assets/icons/main-20-20.svg?react';
-import ProfileIcon from 'src/widgets/assets/icons/profile-20-20.svg?react';
+import { RoutePath } from '@/shared/config/routeConfig/routeConfig';
+import AboutIcon from '@/widgets/assets/icons/about-20-20.svg?react';
+import MainIcon from '@/widgets/assets/icons/main-20-20.svg?react';
+import ProfileIcon from '@/widgets/assets/icons/profile-20-20.svg?react';
 
 export interface SideBarItemType {
     path: string;
@@ -12,6 +12,7 @@ export interface SideBarItemType {
             title?: string | undefined;
         }
     >;
+    authOnly?: boolean;
 }
 
 export const SidebarItemsList: SideBarItemType[] = [
@@ -29,5 +30,12 @@ export const SidebarItemsList: SideBarItemType[] = [
         path: RoutePath.profile,
         text: 'ProfilePage',
         Icon: ProfileIcon,
+        authOnly:true
+    },
+    {
+        path: RoutePath.articles,
+        text: 'ArticlePage',
+        Icon: ProfileIcon,
+        authOnly:true
     },
 ];

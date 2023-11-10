@@ -6,5 +6,9 @@
   "logout": "Выйти",
   "ProfilePage": "Профиль",
   "Main": "Главная",
-  "About": "О сайте"
+  "About": "О сайте",
+  "Profile": "Профиль",
+  "Edit": "Редактировать",
+  "Your name": "Ваше имя",
+  "Your surname": "Ваша фамилия"
 }

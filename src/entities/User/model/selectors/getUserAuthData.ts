@@ -1,4 +1,3 @@
-import { useAppSelector } from 'src/app/types/hooksStore';
-import { StateSchema } from 'src/app/providers/StoreProvider/config/StateSchema';
+import { StateSchema } from '@/app/providers/StoreProvider';
 
-export const getUserAuthData = (state: StateSchema) => state?.user?.authData;
+export const getUserAuthData = (state: StateSchema) => state.user.authData;

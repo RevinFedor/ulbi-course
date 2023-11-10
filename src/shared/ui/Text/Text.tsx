@@ -1,4 +1,4 @@
-import { classNames } from 'src/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './Text.module.scss';
 import { useTranslation } from 'react-i18next';
 

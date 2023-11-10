@@ -6,5 +6,9 @@
   "logout": "Logout",
   "ProfilePage": "Profile",
   "Main": "Main Page",
-  "About": "About the site"
+  "About": "About the site",
+  "Profile": "Profile",
+  "Edit": "Edit",
+  "Your name": "Your name",
+  "Your surname": "Your surname"
 }

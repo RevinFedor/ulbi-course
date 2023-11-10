@@ -1,8 +1,10 @@
-import { classNames } from 'src/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import { SideBarItemType } from '../../model/Items';
 import cls from './SidebarItem.module.scss';
-import { AppLink, AppLinkTheme } from 'src/shared/ui/AppLink/AppLink';
+import { AppLink, AppLinkTheme } from '@/shared/ui/AppLink/AppLink';
+import { getUserAuthData } from '@/entities/User';
+import { useAppSelector } from '@/shared/lib/hooks/hooksStore';
 
 interface SideItemProps {
     item: SideBarItemType;
@@ -12,6 +14,13 @@ interface SideItemProps {
 export const SideItem = ({ item, collapsed }: SideItemProps) => {
     const { t } = useTranslation();
 
+    const isAuth = useAppSelector(getUserAuthData);
+
+    if (item.authOnly && !isAuth) {
+        return null;
+    }
+    console.log(item.authOnly);
+    
     return (
         <AppLink
             theme={AppLinkTheme.SECONDARY}

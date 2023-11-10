@@ -1,4 +1,4 @@
-import { classNames } from 'src/shared/lib/classNames/classNames';
+import { Mods, classNames } from '@/shared/lib/classNames/classNames';
 import cls from './Modal.module.scss';
 import { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import { Portal } from '../Portal/Portal';
@@ -33,12 +33,12 @@ export const Modal = (props: ModalProps) => {
     const closeHandler = useCallback(() => {
         if (onClose) {
             setIsClosing(true);
+            timeRef.current = setTimeout(() => {
+                // Оператор ?. проверяет, существует ли onClose и вызывает его, если он определен.
+                onClose();
+                setIsClosing(false);
+            }, ANUMATION_DELATE);
         }
-        timeRef.current = setTimeout(() => {
-            // Оператор ?. проверяет, существует ли onClose и вызывает его, если он определен.
-            onClose?.();
-            setIsClosing(false);
-        }, ANUMATION_DELATE);
     }, [onClose]);
 
     // предотвращение закрытия модального окна по клику на него само
@@ -65,7 +65,7 @@ export const Modal = (props: ModalProps) => {
         };
     }, [isOpen, onKeyDown]);
 
-    const mods: Record<string, boolean | undefined> = {
+    const mods: Mods = {
         [cls.opened]: isOpen,
         [cls.isClosing]: isClosing,
     };

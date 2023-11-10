@@ -1,19 +1,20 @@
-import { classNames } from 'src/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
-import { Button, ThemeButton } from 'src/shared/ui/Button/Button';
+import { Button, ThemeButton } from '@/shared/ui/Button/Button';
 
 import cls from './LoginForm.module.scss';
-import { Input } from 'src/shared/ui/Input/Input';
+import { Input } from '@/shared/ui/Input/Input';
 
 import { memo, useCallback } from 'react';
 import { loginActions } from '../../model/slice/loginSlice';
 
 import { loginByUsername } from '../../model/services/LoginByUsername/LoginByUsername';
-import { AppDispatch } from 'src/app/providers/StoreProvider/config/store';
-import { useAppDispatch, useAppSelector } from 'src/app/types/hooksStore';
-import { Text } from 'src/shared/ui/Text/Text';
-import { getUserAuthData } from 'src/entities/User';
+import { AppDispatch } from '@/app/providers/StoreProvider/config/store';
+import { useAppDispatch, useAppSelector } from '@/shared/lib/hooks/hooksStore';
+import { Text } from '@/shared/ui/Text/Text';
+import { getUserAuthData } from '@/entities/User';
 import { getLoginState } from '../../model/selectors/getLoginState/getLoginState';
+
 
 export interface LoginFormProps {
     className?: string;
@@ -45,7 +46,7 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
     }, [dispatch, password, username]);
 
     return (
-        <div className={classNames(cls.LoginForm, {}, [className || ''])}>
+        <div className={classNames(cls.LoginForm, {}, [className])}>
             {error && <Text text={error} />}
 
             <Input

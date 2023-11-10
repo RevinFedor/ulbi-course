@@ -1,13 +1,14 @@
 import { useCallback, useState } from 'react';
 import cls from './Navbar.module.scss';
 
-import { classNames } from 'src/shared/lib/classNames/classNames';
-import { Button, ThemeButton } from 'src/shared/ui/Button/Button';
-import { LoginModal } from 'src/features/AuthByUsername';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { Button, ThemeButton } from '@/shared/ui/Button/Button';
+import { LoginModal } from '@/features/AuthByUsername';
 import { useTranslation } from 'react-i18next';
-import { useAppDispatch } from 'src/app/types/hooksStore';
-import { useAppSelector } from 'src/app/types/hooksStore';
-import { getUserAuthData, userActions } from 'src/entities/User';
+import { useAppDispatch } from '@/shared/lib/hooks/hooksStore';
+import { useAppSelector } from '@/shared/lib/hooks/hooksStore';
+import { getUserAuthData, userActions } from '@/entities/User';
+
 
 interface NavbarProps {
     className?: string;
@@ -30,10 +31,9 @@ export const Navbar = ({ className }: NavbarProps) => {
         dispatch(userActions.logout());
     }, []);
 
-    
     if (authData) {
         return (
-            <div className={classNames(cls.Navbar, {}, [className || ''])}>
+            <div className={classNames(cls.Navbar, {}, [className])}>
                 {' '}
                 <Button
                     className={cls.links}
@@ -47,7 +47,7 @@ export const Navbar = ({ className }: NavbarProps) => {
     }
 
     return (
-        <div className={classNames(cls.Navbar, {}, [className || ''])}>
+        <div className={classNames(cls.Navbar, {}, [className])}>
             <Button
                 className={cls.links}
                 theme={ThemeButton.CLEAR_INVERTED}

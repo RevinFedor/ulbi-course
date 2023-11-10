@@ -1,4 +1,4 @@
-import { classNames } from 'src/shared/lib/classNames/classNames';
+import { Mods, classNames } from '@/shared/lib/classNames/classNames';
 import cls from './Button.module.scss';
 import { ButtonHTMLAttributes } from 'react';
 
@@ -6,6 +6,7 @@ export enum ThemeButton {
     CLEAR = 'clear',
     CLEAR_INVERTED = 'clearInverted',
     OUTLINE = 'outline',
+    OUTLINE_RED = 'outline_red',
     BACKGROUND = 'background',
     BACKGROUND_INVERTED = 'backgroundInverted',
 }
@@ -28,18 +29,17 @@ export const Button = (props: ButtonProps) => {
     const {
         className,
         children,
-        theme,
+        theme = ThemeButton.OUTLINE,
         square,
         size = ButtonSize.M,
         disabled,
         ...otherProps
     } = props;
 
-    
     // в зависимости то square будет показан определенынй css класс
     // record представляет разметку для объекта
-    const mods: Record<string, boolean | undefined | string> = {
-        [cls[theme || '']]: true,
+    const mods: Mods = {
+        [cls[theme]]: true,
         [cls.square]: square,
         [cls[size]]: true,
         [cls.disabled]: disabled,

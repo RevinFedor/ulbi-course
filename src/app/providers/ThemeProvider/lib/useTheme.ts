@@ -9,19 +9,30 @@ interface UseThemeResult {
 export function useTheme(): UseThemeResult {
     const { theme, setTheme } = useContext(ThemeContext);
 
-
-
     const toggleTheme = () => {
-        const newTheme = theme === Theme.DARK ? Theme.LIGHT : Theme.DARK;
-        setTheme && setTheme(newTheme);
+        let newTheme: Theme;
+        switch (theme) {
+            case Theme.DARK:
+                newTheme = Theme.LIGHT;
+                break;
+            case Theme.LIGHT:
+                newTheme = Theme.PURPLE;
+                break;
+            case Theme.PURPLE:
+                newTheme = Theme.DARK;
+                break;
+            default:
+                newTheme = Theme.LIGHT;
+        }
+          setTheme?.(newTheme);
 
-        // вешаем шлобально класс, для определения темы, как app, так и мадоалки
-        document.body.className = newTheme
-        localStorage.setItem(LOCAL_STORAGE_THEME_KEY, newTheme);
+          // вешаем шлобально класс, для определения темы, как app, так и мадоалки
+          document.body.className = newTheme;
+          localStorage.setItem(LOCAL_STORAGE_THEME_KEY, newTheme);
     };
 
     return {
-        theme ,
+        theme: theme || Theme.LIGHT,
         toggleTheme,
     };
 }
