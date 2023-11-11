@@ -1,23 +1,26 @@
 import { ReducersMapObject, configureStore } from '@reduxjs/toolkit';
 import { StateSchema } from './StateSchema';
-import { counterReducer } from '@/entities/Counter';
+
 import { userReducer } from '@/entities/User';
 import { loginReducer } from '@/features/AuthByUsername/model/slice/loginSlice';
 import { profileReducer } from '@/entities/Profile';
 import { $api } from '@/shared/api/api';
 import { NavigateOptions, To } from 'react-router-dom';
 import { movieReducer } from '@/entities/Movies';
+import { articleDetailsReducers } from '@/entities/Article';
+import { articleDetailsCommentsReducer } from '@/pages/ArticleDetailsPage/model/slices/articleDetailsCommentsSlice';
 
 export function createReduxStore(
     initialState?: StateSchema,
     navigate?: (to: To, options?: NavigateOptions) => void
 ) {
     const rootReducers: ReducersMapObject<StateSchema> = {
-        counter: counterReducer,
         user: userReducer,
         LoginForm: loginReducer,
         profile: profileReducer,
         movie: movieReducer,
+        articleDetails: articleDetailsReducers,
+        articleDetailsComments: articleDetailsCommentsReducer,
     };
 
     const store = configureStore({

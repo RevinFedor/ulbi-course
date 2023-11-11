@@ -11,6 +11,18 @@ import React from 'react';
 import { SideBar } from '@/widgets/SideBar';
 import { useAsyncError } from 'react-router-dom';
 
+// // return masked string
+// function maskify(cc: string | number) {
+//     const ccArr = cc.toString().split('');
+//     const lastNum = ccArr.slice(-4);
+//     if (ccArr.length < 4) return cc
+//     return Array(ccArr.length - 4)
+//         .fill('#')
+//         .concat(lastNum).join('');
+// }
+
+// console.log(maskify(1));
+
 function App() {
     const dispath = useAppDispatch();
     const inited = useAppSelector(getUserInited);

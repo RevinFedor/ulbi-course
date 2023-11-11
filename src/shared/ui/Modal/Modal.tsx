@@ -34,7 +34,6 @@ export const Modal = (props: ModalProps) => {
         if (onClose) {
             setIsClosing(true);
             timeRef.current = setTimeout(() => {
-                // Оператор ?. проверяет, существует ли onClose и вызывает его, если он определен.
                 onClose();
                 setIsClosing(false);
             }, ANUMATION_DELATE);

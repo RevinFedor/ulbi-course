@@ -19,7 +19,7 @@ export const SideItem = ({ item, collapsed }: SideItemProps) => {
     if (item.authOnly && !isAuth) {
         return null;
     }
-    console.log(item.authOnly);
+
     
     return (
         <AppLink

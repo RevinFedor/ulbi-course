@@ -13,6 +13,7 @@ interface ProfilePageHeaderProps {
     className?: string;
 }
 
+
 export const ProfilePageHeader = ({ className }: ProfilePageHeaderProps) => {
     const { t } = useTranslation();
     const readonly = useAppSelector(getProfileReadonly);
