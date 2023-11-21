@@ -5,7 +5,7 @@
     box-shadow: 0 2px 10px 0 var(--skeleton-shadow);
     overflow: hidden;
 
-    // мерцающая плашка
+    //! мерцающая плашка
     &::before {
         content: "";
         display: block;

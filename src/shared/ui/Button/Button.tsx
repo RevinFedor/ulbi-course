@@ -36,8 +36,8 @@ export const Button = (props: ButtonProps) => {
         ...otherProps
     } = props;
 
-    // в зависимости то square будет показан определенынй css класс
-    // record представляет разметку для объекта
+    //! в зависимости то square будет показан определенынй css класс
+    //! record представляет разметку для объекта
     const mods: Mods = {
         [cls[theme]]: true,
         [cls.square]: square,

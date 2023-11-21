@@ -5,27 +5,29 @@ import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { Profile } from '../types/profile';
 import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localStorage';
 
-
-// get запрос на профиль
+//! get запрос на получения одного профиля
 export const fetchProfileData = createAsyncThunk<
     Profile,
-    void,
+    string,
     ThunkConfig<string>
 >(
     'profile/fetchProfileData',
-    async (_, { extra, dispatch, rejectWithValue }) => {
+    async (profileId, { extra, dispatch, rejectWithValue }) => {
+
+        
         try {
-            const response = await extra.api.get<Profile>('/profile');
+            const response = await extra.api.get<Profile>(
+                `/profile/${profileId}`
+            );
 
             if (!response.data) {
                 throw new Error();
             }
 
-
             return response.data;
         } catch (error: any) {
             console.log(error);
-            //   (error as AxiosError).response?.data?.message не работает из за того что в типе нету message
+            //!   (error as AxiosError).response?.data?.message не работает из за того что в типе нету message
             return rejectWithValue(error.response?.data?.message);
         }
     }

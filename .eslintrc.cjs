@@ -22,9 +22,10 @@ module.exports = {
         // 'i18next/no-literal-string': 1,
         'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
         'react-hooks/exhaustive-deps': 'error', // Checks effect dependencies
+
+        'no-invalid-position-at-import-rule': 'off',
     },
 };
-
 
 // module.exports = {
 //     env: {

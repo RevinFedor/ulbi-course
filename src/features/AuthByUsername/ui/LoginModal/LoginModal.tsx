@@ -12,7 +12,7 @@ interface LoginModalProps {
     onClose: () => void;
 }
 
-// модальное окно с формой
+//! модальное окно с формой
 export const LoginModal = ({ className, isOpen, onClose }: LoginModalProps) => {
     return (
         <Modal

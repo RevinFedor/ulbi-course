@@ -41,12 +41,12 @@ export const ArticleDetails = (props: ArticleDetailsProps) => {
         dispatch(fetchArticleById(id));
     }, [dispatch]);
 
-    // получение данные от asyncfunk
+    //! получение данные от asyncfunk
     const article = useAppSelector(getArticleDetailsData);
     const isLoading = useAppSelector(getArticleDetailsIsLoading);
     const error = useAppSelector(getArticleDetailsError);
 
-    // статья с блоками текста, кода и картинка
+    //! статья с блоками текста, кода и картинка
     const renderBlock = useCallback((block: ArticleBlock) => {
         switch (block.type) {
             case ArticleBlockType.CODE:
@@ -78,12 +78,12 @@ export const ArticleDetails = (props: ArticleDetailsProps) => {
         }
     }, []);
 
-    // вернуться на предыдущую страницу
+    //! вернуться на предыдущую страницу
     const navigateError = () => {
         navigate(-1);
     };
 
-    // обработка загрузки и ошибок
+    //! обработка загрузки и ошибок
     let content;
     if (isLoading) {
         content = (

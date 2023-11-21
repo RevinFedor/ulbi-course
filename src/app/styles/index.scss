@@ -1,7 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 @import "reset";
 @import "variables/global";
 @import "themes/normal";
@@ -13,10 +12,7 @@
 body {
     font: var(--font-m);
     color: var(--primary-color);
-}
-
-* {
-    transition: all .3s;
+    
 }
 
 

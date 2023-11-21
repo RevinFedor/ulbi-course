@@ -20,6 +20,8 @@ import { Currency } from '@/entities/Currency';
 import { getProfileValidateErrors } from '@/entities/Profile/model/selectors/getProfileValidateErrors/getProfileValidateErrors';
 import { Text, TextTheme } from '@/shared/ui/Text/Text';
 import { ValidateProfileError } from '@/entities/Profile/model/types/profile';
+import { useParams } from 'react-router-dom';
+import { Page } from '@/widgets/Page/Page';
 
 interface ProfilePageProps {
     className?: string;
@@ -33,6 +35,7 @@ export const ProfilePage = ({ className }: ProfilePageProps) => {
     const error = useAppSelector(getProfileError);
     const readonly = useAppSelector(getProfileReadonly);
     const validateError = useAppSelector(getProfileValidateErrors);
+    const { id } = useParams<{ id: string }>();
 
     const validateErrorTranslates = {
         [ValidateProfileError.SERVER_ERROR]: t(
@@ -47,8 +50,10 @@ export const ProfilePage = ({ className }: ProfilePageProps) => {
     };
 
     useEffect(() => {
-        dispatch(fetchProfileData());
+        if (id)  dispatch(fetchProfileData(id));
     }, [dispatch]);
+
+    
 
     const onChangeFirstname = useCallback(
         (value?: string) => {
@@ -110,43 +115,35 @@ export const ProfilePage = ({ className }: ProfilePageProps) => {
         [dispatch]
     );
 
-    // forms
-    const onSave = useCallback(
-        (event: React.FormEvent<HTMLFormElement>) => {
-            event.preventDefault(); // Вызываем preventDefault()
+    //! forms
+   
 
-            dispatch(updateProfileData());
-        },
-        [dispatch]
-    );
 
     return (
-        <div className={classNames('', {}, [className])}>
-            <form onSubmit={onSave}>
-                <ProfilePageHeader />
-                {validateError?.length &&
-                    validateError.map((err) => (
-                        <Text
-                            key={err}
-                            theme={TextTheme.ERROR}
-                            text={validateErrorTranslates[err]}
-                        />
-                    ))}
-                <ProfileCard
-                    data={formData}
-                    isLoading={isLoading}
-                    error={error}
-                    readonly={readonly}
-                    onChangeFirstname={onChangeFirstname}
-                    onChangeLastname={onChangeLastname}
-                    onChangeAge={onChangeAge}
-                    onChangeCity={onChangeCity}
-                    onChangeUsername={onChangeUsername}
-                    onChangeAvatar={onChangeAvatar}
-                    onChangeCurrency={onChangeCurrency}
-                    onChangeCountry={onChangeCountry}
-                />
-            </form>
-        </div>
+        <Page className={classNames('', {}, [className])}>
+            <ProfilePageHeader isLoading={isLoading} />
+            {validateError?.length &&
+                validateError.map((err) => (
+                    <Text
+                        key={err}
+                        theme={TextTheme.ERROR}
+                        text={validateErrorTranslates[err]}
+                    />
+                ))}
+            <ProfileCard
+                data={formData}
+                isLoading={isLoading}
+                error={error}
+                readonly={readonly}
+                onChangeFirstname={onChangeFirstname}
+                onChangeLastname={onChangeLastname}
+                onChangeAge={onChangeAge}
+                onChangeCity={onChangeCity}
+                onChangeUsername={onChangeUsername}
+                onChangeAvatar={onChangeAvatar}
+                onChangeCurrency={onChangeCurrency}
+                onChangeCountry={onChangeCountry}
+            />
+        </Page>
     );
 };

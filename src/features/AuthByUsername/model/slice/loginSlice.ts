@@ -20,7 +20,7 @@ export const loginSlice = createSlice({
             state.password = action.payload;
         },
     },
-    // разбираем значение состояние кейса
+    //! разбираем значение состояние кейса
     extraReducers: (builder) => {
         builder
             .addCase(loginByUsername.pending, (state) => {

@@ -4,9 +4,8 @@ import { AboutPage } from '@/pages/AboutPage';
 import { MainPage } from '@/pages/MainPage';
 import { NotFoundPage } from '@/pages/NotFoundPage';
 import { ProfilePage } from '@/pages/ProfilePage/ui/ProfilePage';
-import {ArticleDetailsPage} from '@/pages/ArticleDetailsPage';
-import {ArticlePage} from '@/pages/ArticlePage';
-
+import { ArticleDetailsPage } from '@/pages/ArticleDetailsPage';
+import { ArticlePage } from '@/pages/ArticlePage';
 
 export type AppRoutesProps = RouteProps & {
     authOnly?: boolean;
@@ -24,13 +23,13 @@ export enum AppRoutes {
 export const RoutePath: Record<AppRoutes, string> = {
     [AppRoutes.MAIN]: '/',
     [AppRoutes.ABOUT]: '/about',
-    [AppRoutes.PROFILE]: '/profile',
+    [AppRoutes.PROFILE]: '/profile/',
     [AppRoutes.ARTICLES]: '/articles',
     [AppRoutes.ARTICLES_DATAILS]: '/articles/',
     [AppRoutes.NOTFOUND]: '*',
 };
 
-// в качестве ключа у нас название роута, а в качестве значения путь и компонент
+//! в качестве ключа у нас название роута, а в качестве значения путь и компонент
 export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.MAIN]: {
         path: RoutePath.main,
@@ -42,7 +41,7 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     },
 
     [AppRoutes.PROFILE]: {
-        path: RoutePath.profile,
+        path: `${RoutePath.profile}:id`,
         element: <ProfilePage />,
         authOnly: true,
     },

@@ -16,7 +16,7 @@ const options = {
     },
 };
 
-// get запрос на профиль
+//! get запрос на профиль
 export const fetchMovieData = createAsyncThunk<
     Movie,
     void,

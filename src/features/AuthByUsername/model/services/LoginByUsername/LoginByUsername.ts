@@ -1,5 +1,4 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios, { AxiosError } from 'axios';
 import { User, userActions } from '@/entities/User';
 import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localStorage';
@@ -9,7 +8,7 @@ interface LoginByUsernameProps {
     password: string;
 }
 
-// то, что мы возвращаем, аргумент, конфиг со значениями ответа
+//! то, что мы возвращаем, аргумент, конфиг со значениями ответа
 export const loginByUsername = createAsyncThunk<
     User,
     LoginByUsernameProps,

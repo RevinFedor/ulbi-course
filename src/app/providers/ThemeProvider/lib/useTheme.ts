@@ -26,7 +26,7 @@ export function useTheme(): UseThemeResult {
         }
           setTheme?.(newTheme);
 
-          // вешаем шлобально класс, для определения темы, как app, так и мадоалки
+          //! вешаем шлобально класс, для определения темы, как app, так и мадоалки
           document.body.className = newTheme;
           localStorage.setItem(LOCAL_STORAGE_THEME_KEY, newTheme);
     };

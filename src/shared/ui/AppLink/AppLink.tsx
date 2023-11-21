@@ -14,7 +14,7 @@ interface AppLinkProps extends LinkProps {
     theme?: AppLinkTheme;
 }
 
-// принимает props, которые деструктурируются на отдельные переменные: to, className, children и otherProps. Затем он возвращает компонент Link с передачей соответствующих свойств
+//! принимает props, которые деструктурируются на отдельные переменные: to, className, children и otherProps. Затем он возвращает компонент Link с передачей соответствующих свойств
 export const AppLink: FC<AppLinkProps> = (props) => {
     const {
         to,
@@ -24,7 +24,7 @@ export const AppLink: FC<AppLinkProps> = (props) => {
         ...otherProps
     } = props;
 
-    // проверка наличия необяхательного объекта
+    //! проверка наличия необяхательного объекта
 
     return (
         <Link

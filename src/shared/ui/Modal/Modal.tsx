@@ -20,7 +20,7 @@ export const Modal = (props: ModalProps) => {
     const [isMounted, setIsMounted] = useState(false);
     const timeRef = useRef<ReturnType<typeof setTimeout>>();
 
-    // настройка lazy для времени отображения компонента для ref
+    //! настройка lazy для времени отображения компонента для ref
     useEffect(() => {
         if (isOpen) {
             setIsMounted(true);
@@ -29,7 +29,7 @@ export const Modal = (props: ModalProps) => {
         }
     }, [isOpen]);
 
-    // useRef обеспечивает сохранение ссылки на таймер между рендерами компонента.
+    //! useRef обеспечивает сохранение ссылки на таймер между рендерами компонента.
     const closeHandler = useCallback(() => {
         if (onClose) {
             setIsClosing(true);
@@ -40,12 +40,12 @@ export const Modal = (props: ModalProps) => {
         }
     }, [onClose]);
 
-    // предотвращение закрытия модального окна по клику на него само
+    //! предотвращение закрытия модального окна по клику на него само
     const contentClick = (e: React.MouseEvent) => {
         e.stopPropagation();
     };
 
-    // useCallbak отвечает вроде как за меморизацию
+    //! useCallbak отвечает вроде как за меморизацию
     const onKeyDown = useCallback(
         (e: KeyboardEvent) => {
             if (e.key === 'Escape') {
@@ -73,7 +73,7 @@ export const Modal = (props: ModalProps) => {
         return null;
     }
 
-    // передаем theme
+    //! передаем theme
     return (
         <Portal>
             <div className={classNames(cls.Modal, mods, [className || ''])}>

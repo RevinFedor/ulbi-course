@@ -9,7 +9,6 @@ import { useAppDispatch } from '@/shared/lib/hooks/hooksStore';
 import { useAppSelector } from '@/shared/lib/hooks/hooksStore';
 import { getUserAuthData, userActions } from '@/entities/User';
 
-
 interface NavbarProps {
     className?: string;
 }
@@ -20,7 +19,7 @@ export const Navbar = ({ className }: NavbarProps) => {
     const authData = useAppSelector(getUserAuthData);
     const dispatch = useAppDispatch();
 
-    // функция onToggleModal не будет создаваться каждый раз при рендеренге
+    //! функция onToggleModal не будет создаваться каждый раз при рендеренге
     const onCloseModal = useCallback(() => {
         setIsAuthModal(false);
     }, []);
@@ -33,7 +32,7 @@ export const Navbar = ({ className }: NavbarProps) => {
 
     if (authData) {
         return (
-            <div className={classNames(cls.Navbar, {}, [className])}>
+            <header className={classNames(cls.Navbar, {}, [className])}>
                 {' '}
                 <Button
                     className={cls.links}
@@ -42,12 +41,12 @@ export const Navbar = ({ className }: NavbarProps) => {
                 >
                     {t('logout')}
                 </Button>
-            </div>
+            </header>
         );
     }
 
     return (
-        <div className={classNames(cls.Navbar, {}, [className])}>
+        <header className={classNames(cls.Navbar, {}, [className])}>
             <Button
                 className={cls.links}
                 theme={ThemeButton.CLEAR_INVERTED}
@@ -56,6 +55,6 @@ export const Navbar = ({ className }: NavbarProps) => {
                 {t('login')}
             </Button>
             <LoginModal isOpen={isAuthModal} onClose={onCloseModal} />
-        </div>
+        </header>
     );
 };

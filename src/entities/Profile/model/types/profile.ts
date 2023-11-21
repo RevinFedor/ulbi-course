@@ -1,5 +1,5 @@
-import { Country } from "@/shared/const/common";
-import { Currency } from "@/shared/const/common";
+import { Country } from '@/shared/const/common';
+import { Currency } from '@/shared/const/common';
 
 export enum ValidateProfileError {
     INCORRECT_USER_DATA = 'INCORRECT_USER_DATA',
@@ -9,6 +9,7 @@ export enum ValidateProfileError {
     SERVER_ERROR = 'SERVER_ERROR',
 }
 export interface Profile {
+    id?: string;
     first?: string;
     lastname?: string;
     age?: number;

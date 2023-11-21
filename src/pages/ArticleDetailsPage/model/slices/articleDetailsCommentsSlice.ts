@@ -9,12 +9,12 @@ import { StateSchema } from '@/app/providers/StoreProvider';
 import { fetchCommentsByArticleId } from '@/pages/ArticleDetailsPage/model/services/fetchCommentsByArticleId';
 import { ArticleDetailsCommentsSchema } from '../types/ArticleDetailsCommentsSchema';
 
-// поле comment.id по которому будет идти нормализация данных, между экземлярами
+//! поле comment.id по которому будет идти нормализация данных, между экземлярами
 const commentsAdapter = createEntityAdapter<Comment>({
     selectId: (comment) => comment.id,
 });
 
-// селектор для получения комментариев и если коментариев нету, то возвращаем дефолтный стейт
+//! селектор для получения комментариев и если коментариев нету, то возвращаем дефолтный стейт
 export const getArticleComments = commentsAdapter.getSelectors<StateSchema>(
     (state) => state.articleDetailsComments || commentsAdapter.getInitialState()
 );

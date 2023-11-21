@@ -9,7 +9,7 @@ const defaultTheme =
 const ThemeProvider: FC<{ children: ReactNode }> = ({ children }) => {
     const [theme, setTheme] = useState<Theme>(defaultTheme);
 
-    // будет обновляться компонент только если менябтся значения, а не чилдрен
+    //! будет обновляться компонент только если менябтся значения, а не чилдрен
     const defaultProps = useMemo(
         () => ({
             theme: theme,
