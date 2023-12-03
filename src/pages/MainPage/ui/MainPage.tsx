@@ -10,20 +10,14 @@ const MainPage = () => {
   const [value, setValue] = useState('input the');
   return (
     <Page>
-      <div>Это изменения из ветки delete-MainPage</div>
-      <div>Это изменения из ветки delete-MainPage</div>
-      <div>Это изменения из ветки delete-MainPage</div>
-      <div>Это изменения из ветки delete-MainPage</div>
-      <div>Это изменения из ветки delete-MainPage</div>
-      
-      {/* <Text />
+      <Text />
       <Input placeholder="The place" value={value} onChange={setValue} />
       <Listbox />
       <RatingCard
         hasHasmodal
         title="Как вам статья?"
         modalTitle="Оставьте свой отзыв"
-      /> */}
+      />
     </Page>
   );
 };
