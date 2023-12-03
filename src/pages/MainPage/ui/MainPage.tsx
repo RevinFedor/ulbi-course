@@ -11,7 +11,7 @@ const MainPage = () => {
     <Page>
       <Text />
       <Input placeholder="The place" value={value} onChange={setValue} />
-      <Listbox />
+      <Listbox />dsdsd
      
     </Page>
   );
