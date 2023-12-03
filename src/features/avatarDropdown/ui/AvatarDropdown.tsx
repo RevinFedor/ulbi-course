@@ -9,7 +9,7 @@ import {
   isUserManager,
   userActions,
 } from '@/entities/User';
-import {  getRouteAdmin, getRouteProfile } from '@/shared/const/router';
+import { getRouteAdmin, getRouteProfile } from '@/shared/const/router';
 
 interface AvatarDropdownProps {
   className?: string;
@@ -28,8 +28,8 @@ export const AvatarDropdown = ({ className }: AvatarDropdownProps) => {
   }, [dispatch]);
 
   if (!authData) {
-        return null;
-    }
+    return null;
+  }
 
   const isAdminPanelAvalibale = isAdmin || isManager;
   return (

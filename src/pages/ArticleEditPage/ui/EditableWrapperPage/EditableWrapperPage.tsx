@@ -16,7 +16,12 @@ export const EditableWrapperPage = (props: EditableWrapperPageProps) => {
   //! редактирование существующий
   const navigate = useNavigate();
 
-  const { data: article, isLoading, error, isSuccess } = useGetArticleByIdQuery(id);
+  const {
+    data: article,
+    isLoading,
+    error,
+    isSuccess,
+  } = useGetArticleByIdQuery(id);
 
   const navigateError = () => {
     navigate(-1);
@@ -24,7 +29,12 @@ export const EditableWrapperPage = (props: EditableWrapperPageProps) => {
   if (isLoading || !isSuccess) {
     return (
       <>
-        <Skeleton className="m-auto object-cover" width={200} height={200} border="50%" />
+        <Skeleton
+          className="m-auto object-cover"
+          width={200}
+          height={200}
+          border="50%"
+        />
         <Skeleton className="mt-5" width={300} height={32} />
         <Skeleton className="mt-4" width={600} height={24} />
         <Skeleton className="mt-4" width="100%" height={200} />

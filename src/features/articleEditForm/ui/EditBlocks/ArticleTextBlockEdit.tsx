@@ -74,6 +74,7 @@ export const ArticleTextBlockEdit = memo((props: ArticleTextBlockEditProps) => {
         onChange={onTitleHandler}
         className="text-2xl bg-white mb-4 w-full"
         value={block.title}
+        theme={['outline']}
       />
       {/* масств делать не вариат */}
       {block.paragraphs.map((paragraph, index) => (

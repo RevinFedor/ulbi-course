@@ -93,6 +93,8 @@ export const ArticleEditBlocks = (props: ArticleEditBlocksProps) => {
     [onChangeCodeBlock, onChangeTextBlock, onChangeImageBlock, onDeleteBlock],
   );
   return (
-    <div className={classNames('', {}, [className])}>{articleForm.blocks.map(renderBlock)}</div>
+    <div className={classNames('', {}, [className])}>
+      {articleForm.blocks.map(renderBlock)}
+    </div>
   );
 };

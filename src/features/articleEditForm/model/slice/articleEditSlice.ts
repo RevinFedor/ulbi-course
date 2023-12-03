@@ -26,11 +26,13 @@ export const articleEditSlice = buildSlice({
       };
     },
 
+    //! новый блок в статье
     addArticleBlock: (state, action: PayloadAction<ArticleBlock>) => {
       const newBlock = action.payload;
 
       state.form!.blocks = [...state.form!.blocks, newBlock];
     },
+    //! поля в самой статье
     updateArticleFields: (state, action) => {
       state.form = {
         ...state.form,
@@ -38,36 +40,19 @@ export const articleEditSlice = buildSlice({
       };
     },
     //! Используя оператор !, вы можете явно сообщить TypeScript, что state.form не может быть undefined.
-    updateArticleBlock: (state, action) => {
+    updateArticleBlock: (state, action: PayloadAction<ArticleBlock>) => {
       const updatedBlock = action.payload;
+      const index = state.form!.blocks.findIndex((block) => block.id === updatedBlock.id);
 
-      const updatedBlocks = state.form!.blocks.map((block) => {
-        // Если id блока совпадает с id обновленного блока, обновляем его
-        if (block.id === updatedBlock.id) {
-          return {
-            ...block,
-            ...updatedBlock,
-          };
-        }
-        // В противном случае возвращаем оригинальный блок
-        return block;
-      });
-
-      state.form = {
-        ...state.form!,
-        blocks: updatedBlocks,
-      };
+      if (index !== -1) {
+        state.form!.blocks[index] = { ...state.form!.blocks[index], ...updatedBlock };
+      }
     },
-    removeArticleBlock: (state, action) => {
+
+    removeArticleBlock: (state, action: PayloadAction<string>) => {
       const blockIdToRemove = action.payload;
-
-      // Предполагаем, что blockIdToRemove - это уникальный идентификатор блока, который нужно удалить
-      const updatedBlocks = state.form!.blocks.filter((block) => block.id !== blockIdToRemove);
-
-      state.form = {
-        ...state.form!,
-        blocks: updatedBlocks,
-      };
+      // Фильтруем блоки, оставляя только те, у которых id не совпадает с blockIdToRemove
+      state.form!.blocks = state.form!.blocks.filter((block) => block.id !== blockIdToRemove);
     },
   },
 });

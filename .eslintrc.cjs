@@ -1,108 +1,121 @@
 module.exports = {
-  root: true,
+  root: true, // Указывает ESLint остановить поиск конфигурации вверх по дереву файлов
   env: {
-    browser: true,
-    es2021: true,
+    browser: true, // Определяет переменные окружения для браузера
+    es2021: true, // Определяет переменные окружения для ECMAScript 2021
   },
   extends: [
-    'eslint:recommended',
-    'plugin:@typescript-eslint/recommended',
-    'airbnb',
-    'plugin:react-hooks/recommended',
+    'plugin:react/recommended',
+    'prettier',
+    // 'eslint:recommended', // Базовые правила ESLint
+    // 'plugin:@typescript-eslint/recommended', // Рекомендации по использованию TypeScript
+    'airbnb', // Airbnb стандартные правила
+    // 'plugin:react-hooks/recommended', // Рекомендации по использованию хуков в React
   ],
-  ignorePatterns: ['dist', '.eslintrc.cjs'],
-  parser: '@typescript-eslint/parser',
-  // так нада
+  ignorePatterns: ['dist', '.eslintrc.cjs'], // Игнорирует указанные директории и файлы при проверке
+  parser: '@typescript-eslint/parser', // Указывает парсер для TypeScript
   parserOptions: {
     ecmaFeatures: {
-      jsx: true,
+      jsx: true, // Позволяет разбирать JSX
     },
-    ecmaVersion: 'latest',
-    sourceType: 'module',
+    ecmaVersion: 'latest', // Версия ECMAScript, которую следует использовать
+    sourceType: 'module', // Устанавливает тип модуля для разбора
   },
-  // тут был react-refresh
   plugins: [
-    'react',
-    'i18next',
-    '@typescript-eslint',
-    'react-hooks',
-    'ulbi-tv-plugin',
-    'unused-imports',
+    'react', // Поддержка React
+    'i18next', // Плагин для i18next
+    '@typescript-eslint', // Поддержка TypeScript
+    'react-hooks', // Поддержка правил хуков в React
+    'ulbi-tv-plugin', // Пользовательский плагин
+    'unused-imports', // Проверка на неиспользуемые импорты
   ],
-
   rules: {
-    'react/jsx-indent': [2, 2],
-    'react/jsx-indent-props': [2, 2],
-    indent: 'off',
-    'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.tsx'] }],
-    '@typescript-eslint/no-unused-vars': 'off',
-    '@typescript-eslint/ban-ts-comment': 'off',
-    '@typescript-eslint/no-explicit-any': 'warn',
-    'react/button-has-type': 'off',
-    'operator-linebreak': 'off',
-    'no-param-reassign': 'off',
+    indent: 'off', // Отключает правило отступов, так как используется airbnb
+    'react/jsx-filename-extension': [
+      2,
+      { extensions: ['.js', '.jsx', '.tsx'] },
+    ], // Разрешает расширения JSX в .js, .jsx и .tsx файлах
+    // '@typescript-eslint/no-unused-vars': 'off', // Отключает правило проверки неиспользуемых переменных TypeScript, так как airbnb также содержит подобное
+    // '@typescript-eslint/ban-ts-comment': 'off', // Отключает правило запрета комментариев TypeScript, так как оно выключено
+    // '@typescript-eslint/no-explicit-any': 'warn', // Выводит предупреждение при использовании явного типа any
+    'jsx-a11y/alt-text': 'warn', // Выводит предупреждение при отсутствии атрибута alt для изображений
+    'react/button-has-type': 'off', // Отключает проверку типа кнопок в React
+    'operator-linebreak': 'off', // Отключает правило переноса операторов на новую строку
+    'no-param-reassign': 'off', // Отключает изменение параметра функции
 
-    '@typescript-eslint/explicit-module-boundary-types': 'off',
-    // 'i18next/no-literal-string': 1,
-    'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
-    'react-hooks/exhaustive-deps': 'error', // Checks effect dependencies
+    // '@typescript-eslint/explicit-module-boundary-types': 'off', // Отключает требование указания типов возвращаемых значений для функций TypeScript
+    // 'i18next/no-literal-string': 1, // Закомментировано, возможно, это правило относится к плагину i18next
+    // 'react-hooks/rules-of-hooks': 'error', // Включает проверку правил использования хуков в React
+    // 'react-hooks/exhaustive-deps': 'error', // Включает проверку зависимостей эффектов хуков в React
 
-    'no-invalid-position-at-import-rule': 'off',
-    // В рамках одного слайса все пути должны быть относительными
-    'ulbi-tv-plugin/path-checker': ['error', { alias: '@' }],
-    // Абсолютный импорт разрешен только из Public API
+    'no-invalid-position-at-import-rule': 'off', // Отключает проверку расположения правила импорта в CSS (возможно, связано с PostCSS)
+
+    'ulbi-tv-plugin/path-checker': ['error', { alias: '@' }], // Включает проверку относительных путей для alias в слайсах
     'ulbi-tv-plugin/public-api-imports': [
       'error',
       {
         alias: '@',
-        testFilesPatterns: ['**/*.test.*', '**/*.story.*', '**/StoreDecorator.tsx'],
+        testFilesPatterns: [
+          '**/*.test.*',
+          '**/*.story.*',
+          '**/StoreDecorator.tsx',
+        ],
       },
-    ],
-    // Слой может импортировать в себя только нижележащие слои
+    ], // Включает проверку абсолютных импортов только из файлов Public API
+
     'ulbi-tv-plugin/layer-imports': [
       'error',
       {
         alias: '@',
         ignoreImportPatterns: ['**/StoreProvider', '**/testing'],
       },
-    ],
+    ], // Включает проверку импортов, разрешенных только из нижележащих слоев
 
-    // Удаление неиспользуемых импортов
-    'unused-imports/no-unused-imports': 'warn',
-    // Настройка порядка импортов
-    // 'import/no-unresolved': '[2, {commonjs: true, amd: true}]',
-    // 'import/named': '2',
-    // 'import/namespace': '2',
-    // 'import/default': '2',
-    // 'import/export': '2',
-    // defolt import form Ulbi TV
-    'import/no-unresolved': 'off',
-    'import/prefer-default-export': 'off',
-    'no-unused-vars': 'off',
-    'react/require-default-props': 'off',
-    'react/react-in-jsx-scope': 'off',
-    'react/jsx-props-no-spreading': 'warn',
-    'react/function-component-definition': 'off',
-    'no-shadow': 'off',
-    'import/extensions': 'off',
-    'import/no-extraneous-dependencies': 'off',
-    'object-curly-newline': 'off',
-    'comma-dangle': 'off',
-    'react/no-array-index-key': 'off',
-    'no-restricted-globals': 'off',
-    'no-trailing-spaces': 'off',
-    'no-multiple-empty-lines': 'off',
-    'padded-blocks': 'off',
-    'import/order': 'warn',
-    'linebreak-style': 'off',
-    'implicit-arrow-linebreak': 'off',
-    'max-len': 'off',
-    'function-paren-newline': 'off',
-    'no-undef': 'off',
-    'no-underscore-dangle': 'off',
-    'jsx-a11y/click-events-have-key-events': 'off',
-    'jsx-a11y/no-static-element-interactions': 'off',
-    'react/no-unused-prop-types': 'off',
-    'react/jsx-no-useless-fragment': 'off',
+    'react/jsx-max-props-per-line': ['error', { maximum: 4 }], // props перенос
+    'unused-imports/no-unused-imports': 'warn', // Включает предупреждение о неиспользуемых импортах
+    'import/no-unresolved': 'off', // Отключает проверку неразрешенных импортов
+    'import/prefer-default-export': 'off', // Отключает предпочтение использования экспорта по умолчанию
+    'no-unused-vars': 'off', // Отключает предупреждение о неиспользуемых переменных
+    'react/require-default-props': 'off', // Отключает требование использования дефолтных значений для пропсов в React
+    'react/react-in-jsx-scope': 'off', // Отключает предупреждение о том, что React должен быть в области видимости при использовании JSX
+    'react/jsx-props-no-spreading': 'warn', // Включает предупреждение при использовании spread оператора для пропсов в JSX
+    'react/function-component-definition': 'off', // Отключает требование явного указания типа для функциональных компонентов в React
+    'no-shadow': 'off', // Отключает предупреждение о переопределении переменных внутри блока
+    'import/extensions': 'off', // Отключает проверку расширений файлов при импорте
+    'import/no-extraneous-dependencies': 'off', // Отключает проверку лишних зависимостей
+    'object-curly-newline': 'off', // Отключает требование переноса строк внутри фигурных скобок
+    'comma-dangle': 'off', // Отключает проверку наличия запятой в конце объектов и массивов
+    'react/no-array-index-key': 'off', // Отключает предупреждение о использовании индексов массивов в качестве ключей в React
+    'no-restricted-globals': 'off', // Отключает предупреждение о запрещенных глобальных переменных
+    'no-trailing-spaces': 'off', // Отключает предупреждение о наличии пробелов в конце строк
+    'no-multiple-empty-lines': 'off', // Отключает предупреждение о наличии нескольких пустых строк
+    'padded-blocks': 'off', // Отключает предупреждение о наличии пустых блоков
+    'import/order': 'warn', // Включает предупреждение о нарушении порядка импортов
+    'linebreak-style': 'off', // Отключает предупреждение о стиле переноса строк (LF/CRLF)
+    'implicit-arrow-linebreak': 'off', // Отключает предупреждение о неявном переносе строки в стрелочных функциях
+    'function-paren-newline': 'off', // Отключает предупреждение о переносе строки после открывающей скобки функции
+    'no-undef': 'off', // Отключает предупреждение о использовании неопределенных переменных
+    'no-underscore-dangle': 'off', // Отключает предупреждение о использовании подчеркивания в именах переменных
+    'jsx-a11y/click-events-have-key-events': 'off', // Отключает предупреждение о том, что кликабельные элементы должны иметь соответствующие обработчики клавиш
+    'jsx-a11y/no-static-element-interactions': 'off', // Отключает предупреждение о статических элементах, взаимодействующих с пользователем
+    'react/no-unused-prop-types': 'off', // Отключает предупреждение о неиспользуемых prop types в React-компонентах
+    'react/jsx-no-useless-fragment': 'off', // Отключает предупреждение о бесполезном использовании фрагментов в JSX
+    'jsx-a11y/img-redundant-alt': 'off', // Отключает предупреждение о лишнем атрибуте alt у изображений
+    'max-len': [
+      'warn',
+      {
+        ignoreComments: true,
+        code: 125,
+      },
+    ], // предупреждение о превышении максимальной длины строки
   },
+  overrides: [
+    {
+      files: ['**/src/**/*.{test,stories}.{ts,tsx}'],
+      rules: {
+        'i18next/no-literal-string': 'off',
+        'max-len': 'off',
+      },
+    },
+  ],
 };

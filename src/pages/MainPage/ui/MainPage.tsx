@@ -11,6 +11,10 @@ const MainPage = () => {
   return (
     <Page>
       <div>Это изменения из ветки delete-MainPage</div>
+      <div>Это изменения из ветки delete-MainPage</div>
+      <div>Это изменения из ветки delete-MainPage</div>
+      <div>Это изменения из ветки delete-MainPage</div>
+      <div>Это изменения из ветки delete-MainPage</div>
       
       {/* <Text />
       <Input placeholder="The place" value={value} onChange={setValue} />

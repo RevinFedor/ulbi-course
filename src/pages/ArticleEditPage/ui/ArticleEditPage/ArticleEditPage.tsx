@@ -37,14 +37,20 @@ const ArticleEditPage = memo((props: ArticleEditPageProps) => {
 
   if (!user) {
     return (
-      <Page className={classNames(cls.ArticleEditPage, {}, [className])}>Вы не авторизованы</Page>
+      <Page className={classNames(cls.ArticleEditPage, {}, [className])}>
+        Вы не авторизованы
+      </Page>
     );
   }
 
   //! надо внутри сделать разбивку. поменять тот же самый запрос rtk. слишкмо много улсовий
   return (
     <Page className={classNames(cls.ArticleEditPage, {}, [className])}>
-      {id ? <EditableWrapperPage id={id} /> : <ArticleEditForm editInitArticle={newArticle} id="" />}
+      {id ? (
+        <EditableWrapperPage id={id} />
+      ) : (
+        <ArticleEditForm editInitArticle={newArticle} id="" />
+      )}
     </Page>
   );
 });

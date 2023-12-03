@@ -28,12 +28,14 @@ export const ArticleImageBlockEdit = memo((props: ArticleImageBlockEditProps) =>
         onChange={onChangeTitleHandler}
         className="text-[20px] bg-white mb-4 w-full"
         value={block.title}
+        theme={['outline']}
       />
       <Input
         placeholder="Ссылка на картинку"
         onChange={onChangeSrcHandler}
         className="text-[16px] bg-white mb-4 w-full"
         value={block.src}
+        theme={['outline']}
       />
       <button className={cls.delete_Block_Button} onClick={(e) => onDeleteBlock(block.id)}>
         Удалить блок

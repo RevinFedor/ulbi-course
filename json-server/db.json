@@ -36,7 +36,7 @@
   "articles": [
     {
       "id": "1",
-      "title": "1 - Javascript news СВЕЖАЯ",
+      "title": "1 - Javascript news СВЕЖАЯ1",
       "subtitle": "Что нового в JS за 2022 год?",
       "img": "https://bairesdev.mo.cloudinary.net/blog/2023/08/What-Is-JavaScript-Used-For.jpg?tx=w_3840,q_auto",
       "views": 1022,
@@ -610,6 +610,44 @@
       ],
       "blocks": [],
       "userId": "1"
+    },
+    {
+      "id": "13faccdb-f850-4798-95d6-1833dd01fdc2",
+      "title": "333",
+      "subtitle": "333",
+      "img": "https://feature-sliced.design/ru/assets/images/graphic-nested-slices-b9c44e6cc55ecdbf3e50bf40a61e5a27.svg",
+      "views": 0,
+      "createdAt": "",
+      "userId": "1",
+      "type": "ECONOMICS",
+      "blocks": [
+        {
+          "id": "6fd9333f-47f0-4428-82fc-fadde2ee2da4",
+          "type": "TEXT",
+          "paragraphs": [
+            "3333"
+          ],
+          "title": "133"
+        }
+      ],
+      "user": {
+        "id": "1",
+        "username": "admin",
+        "password": "123",
+        "roles": [
+          "ADMIN"
+        ],
+        "features": {
+          "isArticleRatingEnabled": true,
+          "isCounterEnabled": true,
+          "isAppRedesigned": true
+        },
+        "avatar": "https://mobimg.b-cdn.net/v3/fetch/22/2207633df03a819cd72889249c8361a8.jpeg?w=1470&r=0.5625",
+        "jsonSettings": {
+          "isArticlesPageWasOpened": true,
+          "theme": "app_dark_theme"
+        }
+      }
     }
   ],
   "comments": [

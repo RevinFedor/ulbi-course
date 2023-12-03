@@ -111,18 +111,21 @@ export const ArticleEditForm = (props: ArticleEditFormProps) => {
           className="text-[24px] bg-white mb-4 w-full"
           onChange={onChangeAvatar}
           value={articleForm?.img}
+          theme={['outline']}
         />
         <Input
           placeholder="Заголовок"
           className="text-[24px] bg-white mb-4 w-full"
           onChange={onChangeTitle}
           value={articleForm?.title}
+          theme={['outline']}
         />
         <Input
           placeholder="Подзаголовок"
           className="text-[20px] bg-white mb-4 w-full"
           onChange={onChangeSubtitle}
           value={articleForm?.subtitle}
+          theme={['outline']}
         />
         <ArticleTypeSelect
           className="mb-4"

@@ -1,6 +1,10 @@
 import { CSSProperties, useMemo } from 'react';
 import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 import cls from './Avatar.module.scss';
+import UserIcon from '../../assets/icons/user-filled.svg?react';
+import { Skeleton } from '../Skeleton';
+import { AppImage } from '../AppImage';
+import { Icon } from '../Icon';
 
 interface AvatarProps {
   className?: string;
@@ -19,9 +23,13 @@ export const Avatar = ({ className, src, size, alt }: AvatarProps) => {
     }),
     [size],
   );
+  const fallback = <Skeleton width={size} height={size} border="50%" />;
+  const errorFallback = <Icon width={size} height={size} Icon={UserIcon} />;
 
   return (
-    <img
+    <AppImage
+      fallback={fallback}
+      errorFallback={errorFallback}
       src={src}
       alt={alt}
       style={styles}
