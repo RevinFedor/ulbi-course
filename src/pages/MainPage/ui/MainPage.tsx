@@ -12,6 +12,7 @@ const MainPage = () => {
       <Text />
       <Input placeholder="The place" value={value} onChange={setValue} />
       <Listbox />
+      это то что мы не сохраняли
     </Page>
   );
 };
