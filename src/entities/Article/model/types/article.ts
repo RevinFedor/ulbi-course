@@ -2,65 +2,63 @@ import { User } from '@/entities/User';
 
 //! по какому параметру сортировать
 export enum ArticleSortField {
-    VIEWS = 'views',
-    TITLE = 'title',
-    CREATED = 'createdAt',
+  VIEWS = 'views',
+  TITLE = 'title',
+  CREATED = 'createdAt',
 }
 
 export enum ArticleBlockType {
-    CODE = 'CODE',
-    IMAGE = 'IMAGE',
-    TEXT = 'TEXT',
+  CODE = 'CODE',
+  IMAGE = 'IMAGE',
+  TEXT = 'TEXT',
 }
 
 export interface ArticleBlockBase {
-    id: string;
-    type: ArticleBlockType;
+  id: string;
+  type: ArticleBlockType;
 }
 
 //! может быть три типа блока
 export interface ArticleCodeBlock extends ArticleBlockBase {
-    type: ArticleBlockType.CODE;
-    code: string;
+  type: ArticleBlockType.CODE;
+  code: string;
 }
 
 export interface ArticleImageBlock extends ArticleBlockBase {
-    type: ArticleBlockType.IMAGE;
-    src: string;
-    title: string;
+  type: ArticleBlockType.IMAGE;
+  src: string;
+  title: string;
 }
 
 export interface ArticleTextBlock extends ArticleBlockBase {
-    type: ArticleBlockType.TEXT;
-    paragraphs: string[];
-    title: string;
+  type: ArticleBlockType.TEXT;
+  paragraphs: string[];
+  title: string;
 }
 
 //! дается три вида параграфа на выбор
-export type ArticleBlock =
-    | ArticleCodeBlock
-    | ArticleImageBlock
-    | ArticleTextBlock;
+export type ArticleBlock = ArticleCodeBlock | ArticleImageBlock | ArticleTextBlock;
 
 export enum ArticleType {
-    ALL = 'ALL',
-    IT = 'IT',
-    SCIENCE = 'SCIENCE',
-    ECONOMICS = 'ECONOMICS',
+  ALL = 'ALL',
+  IT = 'IT',
+  SCIENCE = 'SCIENCE',
+  ECONOMICS = 'ECONOMICS',
 }
 
 export enum ArticleView {
-    BIG = 'BIG',
-    SMALL = 'SMALL',
+  BIG = 'BIG',
+  SMALL = 'SMALL',
 }
 export interface Article {
-    id: string;
-    title: string;
-    subtitle: string;
-    img: string;
-    views: number;
-    createdAt: string;
-    type: ArticleType[];
-    blocks: ArticleBlock[];
-    user: User;
+  id: string;
+  title: string;
+  subtitle: string;
+  img: string;
+  views: number;
+  createdAt: string;
+  type: ArticleType[];
+  blocks: ArticleBlock[];
+  user?: User;
+  userId?: string;
 }

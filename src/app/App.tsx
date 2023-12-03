@@ -1,15 +1,11 @@
 import './styles/index.scss';
-import { useTheme } from './providers/ThemeProvider';
+import React, { Suspense, useEffect } from 'react';
 import { AppRouter } from './providers/router';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Navbar } from '@/widgets/Navbar';
-import { Suspense, useState, useEffect } from 'react';
-import { Modal } from '@/shared/ui/Modal/Modal';
 import { useAppDispatch, useAppSelector } from '../shared/lib/hooks/hooksStore';
 import { getUserInited, userActions } from '@/entities/User';
-import React from 'react';
 import { SideBar } from '@/widgets/SideBar';
-import { useAsyncError } from 'react-router-dom';
 
 // // return masked string
 // function maskify(cc: string | number) {
@@ -24,24 +20,24 @@ import { useAsyncError } from 'react-router-dom';
 // console.log(maskify(1));
 
 function App() {
-    const dispath = useAppDispatch();
-    const inited = useAppSelector(getUserInited);
-    useEffect(() => {
-        dispath(userActions.initAuthData());
-    }, []);
+  const dispath = useAppDispatch();
+  const inited = useAppSelector(getUserInited);
+  useEffect(() => {
+    dispath(userActions.initAuthData());
+  }, [dispath]);
 
-    // отобразить линки вне роутинга
-    return (
-        <div className={classNames('app', {}, [])}>
-            <Suspense fallback="">
-                <Navbar />
-                <div className="content-page">
-                    <SideBar />
-                    {inited && <AppRouter />}
-                </div>
-            </Suspense>
+  // отобразить линки вне роутинга
+  return (
+    <div className={classNames('app', {}, [])}>
+      <Suspense fallback="">
+        <Navbar />
+        <div className="content-page">
+          <SideBar />
+          {inited && <AppRouter />}
         </div>
-    );
+      </Suspense>
+    </div>
+  );
 }
 
 export default App;

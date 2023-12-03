@@ -1,17 +1,40 @@
+import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
-import { getUserAuthData } from '@/entities/User';
 import { Navigate, useLocation } from 'react-router-dom';
-import { RoutePath } from '@/shared/config/routeConfig/routeConfig';
+import { getUserAuthData, UserRole } from '@/entities/User';
+import { getRouteForbidden, getRouteMain } from '@/shared/const/router';
 
-export function RequireAuth({ children }: { children: JSX.Element }) {
-    const auth = useSelector(getUserAuthData);
-    const location = useLocation();
+interface RequireAuthProps {
+  children: JSX.Element;
+  roles?: UserRole[];
+}
+export function RequireAuth(props: RequireAuthProps) {
+  const { children, roles } = props;
 
-    if (!auth) {
-        return (
-            <Navigate to={RoutePath.main} state={{ from: location }} replace />
-        );
+  const auth = useSelector(getUserAuthData);
+  const location = useLocation();
+
+  //! есть ли у пользователя auth?.roles нужные роли roles
+  const hasRequireAuthProps = useMemo(() => {
+    if (!roles) {
+      return true;
     }
 
-    return children;
+    //! в отличие от filter возвращает не массив а boolean
+    return roles.some((requiredRole) => {
+      const hasRole = auth?.roles?.includes(requiredRole);
+      return hasRole;
+    });
+  }, [roles, auth]);
+
+  if (!auth) {
+    return <Navigate to={getRouteMain()} state={{ from: location }} replace />;
+  }
+  if (!hasRequireAuthProps) {
+    return (
+      <Navigate to={getRouteForbidden()} state={{ from: location }} replace />
+    );
+  }
+
+  return children;
 }

@@ -1,13 +1,11 @@
-import { MoviesData } from "@/entities/Movies/ui/MoviesData";
-import { Page } from "@/widgets/Page/Page";
+import { MoviesData } from '@/entities/Movies';
+import { Page } from '@/widgets/Page';
 
-const AboutPage = () => {
-  return (
-      <Page>
-          <div>AboutPage</div>
-          <MoviesData />
-      </Page>
-  );
-}
+const AboutPage = () => (
+  <Page>
+    <div>AboutPage</div>
+    <MoviesData />
+  </Page>
+);
 
-export default AboutPage
+export default AboutPage;

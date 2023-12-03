@@ -1,38 +1,42 @@
-import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { Movie, MovieSchema } from '../types/movie';
-import { fetchMovieData } from './fetchMovieData/fetchMovieData';
+import { fetchMovieData } from '../services/fetchMovieData';
+import { buildSlice } from '@/shared/lib/store/buildSlice';
 
 const initialState: MovieSchema = {
-    isLoading: false,
-    error: undefined,
-    data: undefined,
+  isLoading: false,
+  error: undefined,
+  data: undefined,
+  counter: 0,
 };
 
-export const movieSlice = createSlice({
-    name: 'movie',
-    initialState,
-    reducers: {},
-    extraReducers: (builder) => {
-        builder
-            .addCase(fetchMovieData.pending, (state) => {
-                state.error = undefined;
-                state.isLoading = true;
-            })
-            .addCase(
-                fetchMovieData.fulfilled,
-                (state, action: PayloadAction<Movie>) => {
-                    state.isLoading = false;
-                    state.data = action.payload;
-                }
-            )
-            .addCase(fetchMovieData.rejected, (state, action) => {
-                state.isLoading = false;
-                state.error = action.payload;
-            });
+export const movieSlice = buildSlice({
+  name: 'movie',
+  initialState,
+  reducers: {
+    addCounter: (state, { payload }: PayloadAction<number>) => {
+      state.counter += payload;
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchMovieData.pending, (state) => {
+        state.error = undefined;
+        state.isLoading = true;
+      })
+      .addCase(fetchMovieData.fulfilled, (state, action: PayloadAction<Movie>) => {
+        state.isLoading = false;
+        state.data = action.payload;
+      })
+      .addCase(fetchMovieData.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      });
+  },
 });
 
-export const { actions: movieActions } = movieSlice;
-
-export const { reducer: movieReducer } = movieSlice;
+export const {
+  actions: movieActions,
+  reducer: movieReducer,
+  useActions: useMovieActions,
+} = movieSlice;

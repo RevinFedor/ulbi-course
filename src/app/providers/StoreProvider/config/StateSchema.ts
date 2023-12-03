@@ -1,35 +1,41 @@
-import { UserSchema } from '@/entities/User';
-import { LoginSchema } from '@/features/AuthByUsername';
-import { ProfileSchema } from '@/entities/Profile';
 import { AxiosInstance } from 'axios';
 import { NavigateOptions, To } from 'react-router-dom';
-import { MovieSchema } from '@/entities/Movies/model/types/movie';
+import { UserSchema } from '@/entities/User';
+import { LoginSchema } from '@/features/AuthByUsername';
+import { MovieSchema } from '@/entities/Movies';
 import { ArticleDetailsSchema } from '@/entities/Article';
-import { ArticleDetailsCommentsSchema } from '@/pages/ArticleDetailsPage/model/types/ArticleDetailsCommentsSchema';
 import { AddCommentFormSchema } from '@/features/addCommentForm';
 import { ArticlesPageSchema } from '@/pages/ArticlePage';
 import { UISchema } from '@/features/UI';
+import { rtkApi } from '@/shared/api/rtkApi';
+import { ProfileSchema } from '@/features/editableProfileCard';
+import { RatingSchema } from '@/features/articleRating';
+import { ArticleEditSchema } from '@/features/articleEditForm';
 
 export interface StateSchema {
-    user: UserSchema;
-    ui: UISchema;
+  user: UserSchema;
+  ui: UISchema;
+  [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
 
-    //! Асинхронные редюсеры
-    LoginForm: LoginSchema;
-    profile: ProfileSchema;
-    movie: MovieSchema;
-    articleDetails: ArticleDetailsSchema;
-    articleDetailsComments: ArticleDetailsCommentsSchema;
-    addCommentForm: AddCommentFormSchema;
-    articlesPage: ArticlesPageSchema;
+  //! Асинхронные редюсеры
+  LoginForm: LoginSchema;
+  profile: ProfileSchema;
+  movie: MovieSchema;
+  articleDetails?: ArticleDetailsSchema;
+  articleEdit: ArticleEditSchema;
+
+  addCommentForm: AddCommentFormSchema;
+  articlesPage: ArticlesPageSchema;
+
+  rating: RatingSchema;
 }
 
 export interface ThunkExtraArg {
-    api: AxiosInstance;
-    navigate?: (to: To, options?: NavigateOptions) => void;
+  api: AxiosInstance;
+  navigate?: (to: To, options?: NavigateOptions) => void;
 }
 export interface ThunkConfig<T> {
-    rejectValue: T;
-    extra: ThunkExtraArg;
-    state: StateSchema;
+  rejectValue: T;
+  extra: ThunkExtraArg;
+  state: StateSchema;
 }

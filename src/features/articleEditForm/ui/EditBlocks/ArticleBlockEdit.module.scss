@@ -1,0 +1,7 @@
+.delete_Block_Button {
+  @apply selection:text-gl-red-light border border-gl-red-light bg-gl-red-light text-white rounded-full px-4 py-2 mt-2 mb-4;
+}
+
+.delete_paragraph_Button {
+  @apply selection:text-gl-red-light border border-gl-red-light mt-2 px-2 py-1 text-[14px];
+}
